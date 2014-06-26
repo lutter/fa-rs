@@ -14,10 +14,8 @@
 
 #![crate_id = "fa#0.1.0"]
 #![crate_type = "lib"]
-#![feature(phase)]
 
 extern crate libc;
-#[phase(plugin, link)] extern crate log;
 
 use libc::{c_char, size_t};
 use std::c_str::{ToCStr};
