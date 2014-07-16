@@ -12,7 +12,6 @@
 
 //! Rust foreign-function interface wrapper of the [Augeas libfa Finite Automata library](http://augeas.net/libfa/index.html).
 
-#![crate_id = "fa#0.1.0"]
 #![crate_type = "lib"]
 
 extern crate libc;
