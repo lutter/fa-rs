@@ -76,9 +76,9 @@ impl Fa {
     /// is returned.
     pub fn as_regexp(&self) -> Option<String> {
         unsafe {
-            let mut regexp: *c_char = ptr::null();
+            let mut regexp: *const c_char = ptr::null();
             let mut regexp_len: size_t = 0;
-            if ffi::fa_as_regexp(self.fa, &mut regexp as *mut *c_char, &mut regexp_len as *mut size_t) == 0 {
+            if ffi::fa_as_regexp(self.fa, &mut regexp as *mut *const c_char, &mut regexp_len as *mut size_t) == 0 {
                 assert!(regexp.is_not_null());
 
                 // Convert the libfa buffer to a slice, and then to a String.
@@ -128,7 +128,7 @@ impl Fa {
     /// and the file might fail to be created.
     pub fn make_dot_file(&self, path: &Path) {
         path.with_c_str(|path| unsafe {
-            let out = libc::fopen(path, "w+b\0".as_bytes().as_ptr() as *c_char);
+            let out = libc::fopen(path, "w+b\0".as_bytes().as_ptr() as *const c_char);
             if out.is_not_null() {
                 ffi::fa_dot(out as *mut libc::FILE, self.fa);
                 libc::fclose(out);

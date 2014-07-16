@@ -16,9 +16,9 @@ pub struct Fa;
 
 #[link(name = "fa")]
 extern {
-    pub fn fa_compile(re: *c_char, size: size_t, fa: *mut *mut Fa) -> c_int;
+    pub fn fa_compile(re: *const c_char, size: size_t, fa: *mut *mut Fa) -> c_int;
     pub fn fa_minimize(fa: *mut Fa) -> c_int;
-    pub fn fa_as_regexp(fa: *mut Fa, regexp: *mut *c_char, regexp_len: *mut size_t) -> c_int;
+    pub fn fa_as_regexp(fa: *mut Fa, regexp: *mut *const c_char, regexp_len: *mut size_t) -> c_int;
     pub fn fa_union(fa1: *mut Fa, fa2: *mut Fa) -> *mut Fa;
     pub fn fa_contains(fa1: *mut Fa, fa2: *mut Fa) -> c_int;
     pub fn fa_equals(fa1: *mut Fa, fa2: *mut Fa) -> c_int;
